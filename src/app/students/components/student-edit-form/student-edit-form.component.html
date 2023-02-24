@@ -1,0 +1,67 @@
+<mat-card class="main">
+  <mat-card-header>
+    <mat-card-title appFontSize>Edicion de Estudiante</mat-card-title>
+    <mat-card-subtitle appFontSize>Ingrese los datos</mat-card-subtitle>
+  </mat-card-header>
+  <br/>
+  <mat-card-content>
+    <div class="container">
+
+      <form [formGroup]="form" (ngSubmit)="editStudent()">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" required autocomplete="off">
+          <mat-error *ngIf="form.controls['nombre'].touched && form.controls['nombre'].errors?.['required']">
+            Nombre requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" required autocomplete="off">
+          <mat-error *ngIf="form.controls['apellido'].touched && form.controls['apellido'].errors?.['required']">
+            Apellido requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="correo" required autocomplete="off">
+          <mat-error *ngIf="form.controls['correo'].touched && form.controls['correo'].errors?.['required']">
+            Email requerido
+          </mat-error>
+          <mat-error *ngIf="form.controls['correo'].touched && form.controls['correo'].errors?.['pattern']">
+            Formato invalido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Curso</mat-label>
+          <mat-select formControlName="curso">
+            <mat-option *ngFor="let curso of cursos" [value]="curso">
+              {{curso}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Seleccione una fecha</mat-label>
+          <input matInput formControlName="inicio" [matDatepicker]="inicio">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="inicio"></mat-datepicker-toggle>
+          <mat-datepicker #inicio></mat-datepicker>
+        </mat-form-field>
+
+        <br>
+        <hr>
+        <button mat-raised-button type="reset">Limpiar</button>
+        <button mat-raised-button color="primary"
+                type="submit"
+                [disabled]="form.invalid">
+          Editar Alumno
+        </button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sideNavOpened =! sideNavOpened">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Inscripciones de alumnos</span>
+  <span class="spacer"></span>
+  <a mat-icon-button matTooltip="Agregar alumno" routerLink="/students/form">
+    <mat-icon >person_add</mat-icon>
+  </a>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="sideNavOpened">
+    <mat-list>
+      <a mat-list-item routerLink="/students/management">Alumnos</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item>Cursos</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item>Inscripciones</a>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
